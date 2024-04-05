@@ -35,8 +35,3 @@ while True:
     user_choice =  True
   elif user_choice.lower == "no":
     user_choice =  False
-
-
-
-
-
