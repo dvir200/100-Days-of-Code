@@ -1,22 +1,22 @@
 from num_guessing_art import logo
 import random
 
-num_chosen = random.randint(1, 100)
+NUM_CHOSEN = random.randint(1, 100)
 
 
 def game(difficulty):
-  global num_chosen
+  global NUM_CHOSEN
   if difficulty == "hard":
     attempts = 5
   elif difficulty == "easy":
     attempts = 10
   while attempts != 0:
     user_guess = int(input("Make a guess: "))
-    if user_guess == num_chosen:
+    if user_guess == NUM_CHOSEN:
       attempts = 0
-      print(f"You got it! The answer was {num_chosen}")
+      print(f"You got it! The answer was {NUM_CHOSEN}")
       quit()
-    elif user_guess > num_chosen:
+    elif user_guess > NUM_CHOSEN:
       attempts -= 1
       if attempts == 0:
         None
@@ -24,7 +24,7 @@ def game(difficulty):
         print("Too high")
         print("Guess again")
         print(f"You have {attempts} attempts remaining to guess the number.")
-    elif user_guess < num_chosen:
+    elif user_guess < NUM_CHOSEN:
       attempts -= 1
       if attempts == 0:
         None
@@ -38,6 +38,5 @@ def game(difficulty):
 print(logo)
 print("Welcome to the Number Guessing Game!")
 print("I'm thinking of a number between 1 and 100.")
-print(f"Psst, the answer is {num_chosen}")
-user_difficulty = input("Choose a difficulty. Type \'easy' or \'hard': ")
+user_difficulty = input("Choose a difficulty. Type \'easy' or \'hard': ").lower()
 game(user_difficulty)
