@@ -30,27 +30,22 @@ resources = {
     "coffee": 100,
 }
 
-def report(list_resources):
-  for item in list_resources:
-    if item == "water" or item == "milk":
-      print(f"{item}: {list_resources[item]}ml")
-    else:
-      print(f"{item}: {list_resources[item]}g")
 
+""" resources = {
+    "water": 48,
+    "milk": 200,
+    "coffee": 15,
+} """
 
-def check_ingridiants(drink, list_resources):
-  for item in list_resources:
-    if (drink[ingredients[item]]  < list_resources[item])
-
-
-
-def get_drink(drink, pennys, nickles, dimes, quarters):
-
-
-money_gained = 0.0
+print(MENU["espresso"]["ingredients"]["coffee"])
 
 while True:
-  user_input = input("What would you like? (espresso, latte, cappuccino) ")
-  if user_input == "report":
-    report(resources)
+  user_choice = input("What do you want to order? Espresso, Latte or Cappuccino ")
+  user_choice = user_choice.lower()
+  print(user_choice)
+  for item in MENU[user_choice]["ingredients"]:
+    print(item)
+    if resources[item] < MENU[user_choice]["ingredients"][item]:
+      print(f"Not Enough {item} in the machine")
+      break
 
