@@ -24,31 +24,43 @@ MENU = {
     }
 }
 
-""" resources = {
+resources = {
     "water": 300,
     "milk": 200,
     "coffee": 100,
-} """
+}
 
 PROFIT = 0.00
 
-resources = {
+""" resources = {
     "water": 48,
     "milk": 200,
     "coffee": 15,
-}
+} """
 
 print(MENU["espresso"]["ingredients"]["coffee"])
 
-def calc (product_price, quarters, dimes, nickles, pennys):
-  coin_input = (quarters * 0.25) + (dimes * 0.10) + (nickles * 0.05) + (pennys * 0.01)
+def calc (product_price, quarters, dimes, nickles, pennys, product):
+  global PROFIT
+  coin_input = float((quarters * 0.25) + (dimes * 0.10) + (nickles * 0.05) + (pennys * 0.01))
   if coin_input < product_price:
-    return 0
+    print("Not enough coins inserted. money refunded")
   elif coin_input == product_price:
-    return 1
+    print(f"Here is your {product}. Enjoy :)")
   else:
-    PROFIT += coin_input
-    return [1, coin_input - product_price]
+    change = (coin_input - product_price)
+    reduce_resources(resources, MENU[product]["ingredients"])
+    PROFIT += product_price
+    print(f"Your change is {change % 10}. Enjoy :)")
+
+
+""" check function next time """
+def reduce_resources (machine_resources, product_ingrediants):
+  global resources
+  for item in machine_resources:
+    if item == product_ingrediants[item]:
+      item = item - product_ingrediants[item]
+
 
 
 while True:
@@ -61,16 +73,19 @@ while True:
     if resources[item] < MENU[user_choice]["ingredients"][item]:
       missing_ingredients.append(item)
   if len(missing_ingredients) > 0:
-    """ print to the customer what is missing """
+    if len(missing_ingredients) == 1:
+      print(f"Not Enough {missing_ingredients[0]} to make {user_choice}")
+    elif len (missing_ingredients) == 2:
+      print(f"Not Enough {missing_ingredients[0]} and {missing_ingredients[1]} to make {user_choice}")
+    else:
+      print(f"Not Enough {missing_ingredients[0]}, {missing_ingredients[1]} and {missing_ingredients[2]} to make {user_choice}")
+
   else:
     print("Please insert coins")
-    quarters = input("How many quarters? ")
-    dimes = input("How many dimes? ")
-    nickles = input("How many nickles? ")
-    pennys = input("How many pennys? ")
+    quarters = float(input("How many quarters? "))
+    dimes = float(input("How many dimes? "))
+    nickles = float(input("How many nickles? "))
+    pennys = float(input("How many pennys? "))
 
-    result_check = calc(MENU[user_choice].get("cost"), quarters, dimes, nickles, pennys)
-    if result_check[0] == 0:
-        print("Not enough coins inserted")
-    else:
-        print(f"Here is your {user_choice}, ")
+    calc(MENU[user_choice].get("cost"), quarters, dimes, nickles, pennys, user_choice)
+
