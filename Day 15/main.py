@@ -41,6 +41,8 @@ def calc (product_price, quarters, dimes, nickles, pennys, product):
   if coin_input < product_price:
     print("Not enough coins inserted. money refunded")
   elif coin_input == product_price:
+    reduce_resources(resources, MENU[product]["ingredients"])
+    PROFIT += product_price
     print(f"Here is your {product}. Enjoy :)")
   else:
     change = (coin_input - product_price)
