@@ -35,7 +35,7 @@ PROFIT = 0.00
 
 print(MENU["espresso"]["ingredients"]["coffee"])
 
-def calc (product_price, quarters, dimes, nickles, pennys, product):
+def calc(product_price, quarters, dimes, nickles, pennys, product):
   global PROFIT
   coin_input = float((quarters * 0.25) + (dimes * 0.10) + (nickles * 0.05) + (pennys * 0.01))
   if coin_input < product_price:
