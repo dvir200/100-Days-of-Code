@@ -34,7 +34,8 @@ ball.penup()
 ball.shape("circle")
 ball.color("white")
 ball.shapesize(0.9, 0.9, 0)
-ball.setheading(initial_heading)
+ball.setheading(10)
+
 
 
 player1 = Turtle()
@@ -59,7 +60,7 @@ screen.onkey(key="s", fun=down_player1)
 screen.onkey(key="Up", fun=up_player2)
 screen.onkey(key="Down", fun=down_player2)
 
-within_border_parameters = False
+prev_iter_turn = False
 
 while is_game_on:
   screen.update()
@@ -68,34 +69,34 @@ while is_game_on:
 
   print(f"Y cord: {ball.ycor()}")
   print(f"Heading: {ball.heading()}")
+  print()
+  print()
 
+  if ball.ycor() < 220.0 or ball.ycor() > -220.0:
+    prev_iter_turn = False
 
   #ball hitting the wall
-  if (ball.ycor() > 220.0 or ball.ycor() < -220.0):
-      if ball.heading() > 0.0 and ball.heading() < 90.0:
+  if prev_iter_turn is True:
+    pass
+  else:
+    if ball.ycor() > 215.0:
+        if ball.heading() > 0.0 and ball.heading() < 90.0:
+          prev_iter_turn = True
+          ball.right(90)
+        elif ball.heading() > 90.0 and ball.heading() < 180.0:
+          prev_iter_turn = True
+          ball.left(90)
+    elif ball.ycor() < -215.0:
+      if ball.heading() > 180.0 and ball.heading() < 270.0:
+        prev_iter_turn = True
         ball.right(90)
-        while ball.ycor() < 220:
-          screen.update()
-          time.sleep(0.5)
-          ball.forward(10)
-      elif ball.heading() > 90.0 and ball.heading() < 180.0:
-        ball.left(90)
-        while ball.ycor() < 220:
-          screen.update()
-          time.sleep(0.5)
-          ball.forward(10)
-      elif ball.heading() > 180.0 and ball.heading() < 270.0:
-       ball.right(90)
-       while ball.ycor() < -220:
-          screen.update()
-          time.sleep(0.5)
-          ball.forward(10)
       else:
-        ball.left(90)
-        while ball.ycor() < -220:
-          screen.update()
-          time.sleep(0.5)
-          ball.forward(10)
+          prev_iter_turn = True
+          ball.left(90)
+
+        
+
+
 
 
   if (ball.distance(player1) <= 20 or ball.distance(player2) <= 20):
