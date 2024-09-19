@@ -59,59 +59,76 @@ screen.onkey(key="s", fun=down_player1)
 screen.onkey(key="Up", fun=up_player2)
 screen.onkey(key="Down", fun=down_player2)
 
+within_border_parameters = False
+
 while is_game_on:
   screen.update()
   time.sleep(0.1)
-  ball.forward(20)
+  ball.forward(10)
+
+  print(f"Y cord: {ball.ycor()}")
+  print(f"Heading: {ball.heading()}")
+
 
   #ball hitting the wall
-  if (ball.ycor() > 220.0) or (ball.ycor() < -220.0):
-    if ball.heading() > 0.0 and ball.heading() < 90.0:
-      ball.right(90)
-    elif ball.heading() > 90.0 and ball.heading() < 180.0:
-      ball.left(90)
-    elif ball.heading() > 180.0 and ball.heading() < 270.0:
-      ball.right(90)
-      screen.update()
-      time.sleep(0.1)
-      ball.forward(20)
-    else:
-      ball.left(90)
-      screen.update()
-      time.sleep(0.1)
-      ball.forward(20)
+  if (ball.ycor() > 220.0 or ball.ycor() < -220.0):
+      if ball.heading() > 0.0 and ball.heading() < 90.0:
+        ball.right(90)
+        while ball.ycor() < 220:
+          screen.update()
+          time.sleep(0.5)
+          ball.forward(10)
+      elif ball.heading() > 90.0 and ball.heading() < 180.0:
+        ball.left(90)
+        while ball.ycor() < 220:
+          screen.update()
+          time.sleep(0.5)
+          ball.forward(10)
+      elif ball.heading() > 180.0 and ball.heading() < 270.0:
+       ball.right(90)
+       while ball.ycor() < -220:
+          screen.update()
+          time.sleep(0.5)
+          ball.forward(10)
+      else:
+        ball.left(90)
+        while ball.ycor() < -220:
+          screen.update()
+          time.sleep(0.5)
+          ball.forward(10)
+
 
   if (ball.distance(player1) <= 20 or ball.distance(player2) <= 20):
     if round(ball.heading()) == 0 or round(ball.heading()) == 360:
       ball.left(180)
       screen.update()
       time.sleep(0.1)
-      ball.forward(20)
+      ball.forward(10)
     elif round(ball.heading()) == 180:
       ball.left(180)
       screen.update()
       time.sleep(0.1)
-      ball.forward(20)
+      ball.forward(10)
     if ball.heading() > 0.0 and ball.heading() < 90.0:
       ball.left(90)
       screen.update()
       time.sleep(0.1)
-      ball.forward(20)
+      ball.forward(10)
     elif ball.heading() > 90.0 and ball.heading() < 180.0:
       ball.right(90)
       screen.update()
       time.sleep(0.1)
-      ball.forward(20)
+      ball.forward(10)
     elif ball.heading() > 180.0 and ball.heading() < 270.0:
       ball.left(90)
       screen.update()
       time.sleep(0.1)
-      ball.forward(20)
+      ball.forward(10)
     else:
       ball.right(90)
       screen.update()
       time.sleep(0.1)
-      ball.forward(20)
+      ball.forward(10)
 
 
 screen.exitonclick()
