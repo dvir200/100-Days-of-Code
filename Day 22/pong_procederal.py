@@ -26,8 +26,25 @@ screen.bgcolor("black")
 screen.tracer(0)
 
 is_game_on = True
+p1_score = 0
+p2_score = 0
 initial_heading = random.randrange(0, 360)
 screen.update()
+
+scoreboard_p1 = Turtle()
+scoreboard_p1.hideturtle()
+scoreboard_p1.penup()
+scoreboard_p1.color("white")
+scoreboard_p1.goto(x=-250, y=200)
+scoreboard_p1.write(f"{p1_score}", move=False, align="center", font=('Ariel', 20))
+
+scoreboard_p2 = Turtle()
+scoreboard_p2.hideturtle()
+scoreboard_p2.penup()
+scoreboard_p2.color("white")
+scoreboard_p2.goto(x=250, y=200)
+scoreboard_p2.write(f"{p2_score}", move=False, align="center", font=('Ariel', 20))
+
 
 ball = Turtle()
 ball.penup()
@@ -66,7 +83,7 @@ prev_iter_turn = False
 while is_game_on:
   screen.update()
   time.sleep(0.1)
-  ball.forward(5)
+  ball.forward(10)
 
   if ball.ycor() < 220.0 or ball.ycor() > -220.0:
     prev_iter_turn = False
@@ -80,14 +97,14 @@ while is_game_on:
           while ball.ycor() > 215.0:
             screen.update()
             time.sleep(0.1)
-            ball.forward(5)
+            ball.forward(10)
         elif ball.heading() > 90.0 and ball.heading() < 180.0:
           prev_iter_turn = True
           ball.left(90)
           while ball.ycor() > 215.0:
             screen.update()
             time.sleep(0.1)
-            ball.forward(5)
+            ball.forward(10)
     elif ball.ycor() < -215.0:
       if ball.heading() > 180.0 and ball.heading() < 270.0:
         prev_iter_turn = True
@@ -95,14 +112,14 @@ while is_game_on:
         while ball.ycor() <-215.0:
           screen.update()
           time.sleep(0.1)
-          ball.forward(5)
+          ball.forward(10)
       elif ball.heading() > 270.0 and ball.heading() < 360.0:
         prev_iter_turn = True
         ball.left(90)
         while ball.ycor() <-215.0:
           screen.update()
           time.sleep(0.1)
-          ball.forward(5)
+          ball.forward(10)
   else:
     pass
     
@@ -148,10 +165,22 @@ while is_game_on:
         time.sleep(0.1)
         ball.forward(10)
 
+  if ball.xcor() > 490:
+    scoreboard_p1.clear()
+    p1_score += 1
+    scoreboard_p1.write(f"{p1_score}", move=False, align="center", font=('Ariel', 20))
+    ball.goto(x=0, y=0)
+    initial_heading = random.randrange(0, 360)
+    ball.setheading(initial_heading)
+  
+  elif ball.xcor() < -490:
+    scoreboard_p2.clear()
+    p2_score += 1
+    scoreboard_p2.write(f"{p2_score}", move=False, align="center", font=('Ariel', 20))
+    ball.goto(x=0, y=0)
+    initial_heading = random.randrange(0, 360)
+    ball.setheading(initial_heading)
+
 screen.exitonclick()
-
-
-
-
 
 
