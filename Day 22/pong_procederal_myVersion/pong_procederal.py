@@ -6,19 +6,17 @@ import random
 # key mapping functions
 def up_player1():
   player1.setheading(90)
-  player1.forward(10)
+  player1.forward(20)
 
 def down_player1():
-  player1.setheading(270)
-  player1.forward(10)
+  player1.back(20)
 
 def up_player2():
   player2.setheading(90)
-  player2.forward(10)
+  player2.forward(20)
 
 def down_player2():
-  player2.setheading(270)
-  player2.forward(10)
+  player2.back(20)
 
 
 
@@ -71,6 +69,7 @@ player1.penup()
 player1.setheading(90)
 player1.shapesize(0.2, 3,0)
 player1.goto(x=-450, y=0)
+player1.speed("fastest")
 
 # player 2 initializing
 player2 = Turtle()
@@ -80,13 +79,14 @@ player2.setheading(90)
 player2.shapesize(0.2, 3,0)
 player2.penup()
 player2.goto(x=450, y=0)
+player2.speed("fastest")
 
 # key listening
 screen.listen()
-screen.onkey(key="w", fun=up_player1)
-screen.onkey(key="s", fun=down_player1)
-screen.onkey(key="Up", fun=up_player2)
-screen.onkey(key="Down", fun=down_player2)
+screen.onkeypress(key="w", fun=up_player1)
+screen.onkeypress(key="s", fun=down_player1)
+screen.onkeypress(key="Up", fun=up_player2)
+screen.onkeypress(key="Down", fun=down_player2)
 
 # game logic
 while is_game_on:
@@ -97,10 +97,10 @@ while is_game_on:
   # ball hitting the wall
   if ball.ycor() > 215.0 or ball.ycor() < -215.0:
     ball.setheading(360 - ball.heading())
-    while ball.ycor() > 215.0:
+    """ while ball.ycor() > 215.0:
       screen.update()
       time.sleep(0.1)
-      ball.forward(10)
+      ball.forward(10) """
     
 
   # ball bounce off paddle     
