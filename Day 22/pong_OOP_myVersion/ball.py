@@ -12,8 +12,9 @@ BALL_STEPS = 10
 
 SLEEP_VALUE = 0.1
 
-class Ball:
+class Ball(Turtle):
   def __init__(self):
+    super().__init__()
     self = Turtle()
     self.penup()
     self.shape("circle")
@@ -35,7 +36,7 @@ class Ball:
     self.goto(x=0, y=0)
     self.choose_start_heading()
 
-  def ball_move(self, screen_obj):
+  def move(self, screen_obj):
     screen_obj.update()
     sleep(SLEEP_VALUE)
     self.forward(BALL_STEPS)

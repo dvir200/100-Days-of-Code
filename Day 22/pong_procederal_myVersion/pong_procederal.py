@@ -92,7 +92,7 @@ screen.onkeypress(key="Down", fun=down_player2)
 while is_game_on:
   screen.update()
   "time.sleep(0.1)"
-  ball.forward(0.3)
+  ball.forward(0.25)
 
   # ball hitting the wall
   if ball.ycor() > 215.0 or ball.ycor() < -215.0:
@@ -105,7 +105,7 @@ while is_game_on:
     while ball.distance(player1) <= 20 or ball.distance(player2) <= 20:
         screen.update()
         "time.sleep(0.1)"
-        ball.forward(0.3)
+        ball.forward(0.25)
 
 
   # ball passes one of the paddles
