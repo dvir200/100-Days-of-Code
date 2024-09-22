@@ -15,11 +15,12 @@ SLEEP_VALUE = 0.1
 class Ball(Turtle):
   def __init__(self):
     super().__init__()
-    self = Turtle()
+    """ self = Turtle() """
     self.penup()
     self.shape("circle")
     self.shapesize(stretch_wid=BALL_WIDTH, stretch_len=BALL_LENGTH, outline=BALL_OUTLINE)
     self.color("white")
+    self.fresh_start()
 
   def choose_start_heading(self):
     self.setheading(choice(BALL_STARTING_POS))

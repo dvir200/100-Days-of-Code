@@ -21,6 +21,7 @@ PADDLE_P1_X_VALUE = -450
 PADDLE_P2_X_VALUE = 450
 PADDLE_Y_VALUE = 0
 
+
 screen = Screen()
 screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 screen.title(SCREEN_TITLE)
@@ -37,13 +38,13 @@ ball = Ball()
 
 player1 = Paddle(x_parameter=PADDLE_P1_X_VALUE, y_parameter=PADDLE_Y_VALUE)
 
-player2 = Paddle(x_parameter=PADDLE_P2_X_VALUE, y_parameter=PADDLE_Y_VALUE)
+player2 = Paddle(x_parameter = PADDLE_P2_X_VALUE, y_parameter = PADDLE_Y_VALUE)
 
 screen.listen()
-screen.onkeypress(key=PLAYER_1_UP_KEY, fun=player1.paddle_up())
-screen.onkeypress(key=PLAYER_1_DOWN_KEY, fun=player1.paddle_down())
-screen.onkeypress(key=PLAYER_2_UP_KEY, fun=player2.paddle_up())
-screen.onkeypress(key=PLAYER_2_DOWN_KEY, fun=player2.paddle_down())
+screen.onkeypress(key=PLAYER_1_UP_KEY, fun=player1.paddle_up)
+screen.onkeypress(key=PLAYER_1_DOWN_KEY, fun=player1.paddle_down)
+screen.onkeypress(key=PLAYER_2_UP_KEY, fun=player2.paddle_up)
+screen.onkeypress(key=PLAYER_2_DOWN_KEY, fun=player2.paddle_down)
 
 while is_game_on:
   ball.move(screen_obj=screen)
