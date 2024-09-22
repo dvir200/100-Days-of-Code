@@ -91,16 +91,12 @@ screen.onkeypress(key="Down", fun=down_player2)
 # game logic
 while is_game_on:
   screen.update()
-  time.sleep(0.1)
-  ball.forward(10)
+  "time.sleep(0.1)"
+  ball.forward(0.3)
 
   # ball hitting the wall
   if ball.ycor() > 215.0 or ball.ycor() < -215.0:
     ball.setheading(360 - ball.heading())
-    """ while ball.ycor() > 215.0:
-      screen.update()
-      time.sleep(0.1)
-      ball.forward(10) """
     
 
   # ball bounce off paddle     
@@ -108,8 +104,8 @@ while is_game_on:
     ball.setheading((ball.heading() + 180) % 360)
     while ball.distance(player1) <= 20 or ball.distance(player2) <= 20:
         screen.update()
-        time.sleep(0.1)
-        ball.forward(10)
+        "time.sleep(0.1)"
+        ball.forward(0.3)
 
 
   # ball passes one of the paddles
