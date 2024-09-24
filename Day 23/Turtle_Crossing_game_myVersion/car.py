@@ -3,18 +3,35 @@ import random
 
 COLORS = ["blue", "black","white", "red", "yellow", "green", "purple", "pink"]
 STEPS = 10
+STEP_INCREASE = 5
 
-class Car(Turtle):
+class Cars:
     def __init__(self):
-        super().__init__()
-        self.penup()
-        self.color("black")
-        self.shape("square")
-        self.shapesize(stretch_wid=1, stretch_len=2)
-        self.penup()
-        self.goto(x=0, y=random.randint(0,280))
-        self.setheading(180)
+        self.cars_list = []
 
-    def move(self):
-        self.forward(STEPS)
+    def add_car(self):
+        rand_value = random.randint(0,4)
+        if rand_value == 1:
+            vehicle = Turtle()
+            vehicle.shape("square")
+            vehicle.shapesize(stretch_wid=1, stretch_len=2)
+            vehicle.penup()
+            vehicle.setheading(180)
+            vehicle.goto(x=420, y=random.randint(-280, 280))
+            vehicle.color(random.choice(COLORS))
+            if len(self.cars_list) == 0:
+                self.cars_list.append(vehicle)
+            else:
+                for item in self.cars_list:
+                    if item.xcor() < -420:
+                        item = vehicle
+                        pass
+                self.cars_list.append(vehicle)
 
+    def move_cars(self):
+        for item in self.cars_list:
+            item.forward(STEPS)
+
+    def increase_speed(self):
+        global STEPS
+        STEPS = STEPS + STEP_INCREASE
