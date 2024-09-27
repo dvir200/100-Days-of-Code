@@ -3,7 +3,7 @@ from turtle import Turtle, Screen
 import random 
 
 
-colors = colorgram.extract('image.jpg', 30)
+colors = colorgram.extract('Day 18\Hirst Painting Project\image.jpg', 30)
 
 rgb_from_extraction = []
 for x in range (30):
